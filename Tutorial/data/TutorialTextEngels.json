@@ -1,0 +1,6 @@
+[
+  { "title": "Beweeg naar links:", "text": "Druk op 'h' om naar links te bewegen.", "key": "h" },
+  { "title": "Beweeg naar rechts:", "text": "Druk op 'l' om naar rechts te bewegen.", "key": "l" },
+  { "title": "Beweeg omhoog:", "text": "Druk op 'k' om omhoog te bewegen.", "key": "k" },
+  { "title": "Beweeg omlaag:", "text": "Druk op 'j' om omlaag te bewegen.", "key": "j" }
+]

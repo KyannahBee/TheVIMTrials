@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Over Vim &amp; The VIM Trails</title>
+    <!-- Re‑use bestaande globale stylesheet om één look‑and‑feel te houden -->
+    <link rel="stylesheet" href="../Algoritme/uitlegAlgoritme.css" type="text/css">
+    <link rel="icon" href="../images/favicon.png" type="image/x-icon">
+
+    <!-- Pagina‑specifieke stijlen -->
+    <style>
+        /* benadruk toetsen als visuele "chips" */
+        .vim-command {
+            font-family: monospace;
+            background-color: #f1f1f1;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #19535F;
+        }
+
+        /* tabel met basiscommando's */
+        .command-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .command-table th, .command-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .command-table th {
+            background-color: #19535F;
+            color: #fff;
+        }
+        .command-table tr:nth-child(even){
+            background:#f9f9f9;
+        }
+
+        /* losse contentblokken */
+        .section   {margin:40px 0;}
+        .section h2{color:#19535F;}
+
+        /* kaartjes voor data uit externe API */
+        .api-card{
+            background:#f8f9fa;
+            border-left:4px solid #19535F;
+            padding:15px;
+            border-radius:4px;
+            box-shadow:0 2px 4px rgba(0,0,0,.08);
+            margin-bottom:15px;
+        }
+        .api-card h3{margin:0 0 8px;color:#19535F;font-size:1.05rem;}
+        .api-error{color:#721c24;background:#f8d7da;padding:10px;border-radius:4px;text-align:center;}
+    </style>
+</head>
+<body>
+<header>
+    <a href="index.html" id="home-link" aria-label="Terug naar startpagina">
+        <img class="home-button" src="../images/home-knop.png" alt="Home-knop">
+    </a>
+    <div class="header-title"><h1>Over Vim &amp; The VIM Trails</h1></div>
+    <img class="navigatie-image" src="../images/navigatie-1.jpg" alt="navigatie-info">
+</header>
+
+<main>
+    <!-- 1. Intro over het softwareproject -->
+    <section class="section" id="project-overview">
+        <h2>Het softwareproject in een notendop</h2>
+        <p>Dit vak <em>Softwareproject&nbsp;2025</em> daagt elk team uit om een interactieve, toegankelijke en duurzame webapplicatie te bouwen. Ons team koos voor een combinatie van <strong>doolhof‑algoritmen</strong> (Prim), <strong>zoek-algoritmen(BFS)</strong> en <strong>Vim‑commando&#39;s</strong>. Zo voldoen we tegelijk aan de opdrachtvereisten:</p>
+        <ol>
+            <li><strong>Algoritme‑uitleg:</strong> op de <a href="../Algoritme/Prim.html">algoritmepagina</a> leggen we stap‑voor‑stap uit hoe Prim een doolhof opbouwt.</li>
+            <li><strong>Leren door te spelen:</strong> de game <em>The&nbsp;VIM&nbsp;Trails</em> gebruikt hetzelfde doolhof en laat je de basistoetsen (h j k l …) al doende inoefenen.</li>
+            <li><strong>Meting & vergelijking:</strong>  Op de <a href="../Algoritme/Prim.html">algoritmepagina</a> vergelijken wij kort Kruskal met Prim.</li>
+            <li><strong>Toegankelijkheid (A11Y):</strong> kleuren met hoog contrast, toetsen‑navigatie zonder muis, én aria‑labels.</li>
+            <li><strong>Duurzaamheid:</strong> lichte afbeeldingen, hergebruik van code en geen server‑side back‑end.</li>
+        </ol>
+    </section>
+
+    <!-- 2. Wat is Vim? -->
+    <section class="section" id="wat-is-vim">
+        <h2>Wat is Vim?</h2>
+        <p>Vim is een tekstverwerker uit 1991, bedacht door <strong>Bram Moolenaar</strong>. In tegenstelling tot Word of Google Docs of andere IDE's voor het programmeren in het algemeen, werkt Vim grotendeels zonder muis: je wisselt tussen <em>modi</em> (Normal, Insert, Visual, Command) en tikt korte letter‑combinaties in&nbsp;plaats van lange sneltoetsen met Ctrl / Cmd. Je hoeft dus niet meer je muis te gebruiken tijdens het navigeren, bewerken, opslaan en nog veel meer... van je bestand.</p>
+        <p>Dit lijkt in het begin vreemd, maar het is zoals blind leren typen: na wat oefening gaat het automatisch en bespaar je veel denkwerk — en dus tijd.</p>
+        <ul>
+            <li><strong>Normal‑modus</strong>: navigeren & bewerken</li>
+            <li><strong>Insert‑modus</strong>: tekst invoeren <span class="vim-command">i</span></li>
+            <li><strong>Visual‑modus</strong>: selecteren</li>
+            <li><strong>Command‑modus</strong>: opdrachten als <span class="vim-command">:w</span> (opslaan)</li>
+        </ul>
+    </section>
+
+    <!-- 3. Basiscommando's -->
+    <section class="section" id="vim-basis">
+        <h2>Basiscommando's</h2>
+        <p>Met deze letters kun je al door elk bestand wandelen:</p>
+        <table class="command-table" aria-describedby="vim-basis">
+            <thead><tr><th scope="col">Commando</th><th scope="col">Betekenis</th></tr></thead>
+            <tbody>
+            <tr><td class="vim-command">h j k l</td><td>Links&nbsp;• Omlaag&nbsp;• Omhoog&nbsp;• Rechts</td></tr>
+            <tr><td class="vim-command">i</td><td>Naar Insert‑modus</td></tr>
+            <tr><td class="vim-command">Esc</td><td>Terug naar Normal‑modus</td></tr>
+            <tr><td class="vim-command">:w</td><td>Bestand opslaan (<em>w</em>rite)</td></tr>
+            <tr><td class="vim-command">:q</td><td>Vim afsluiten (<em>q</em>uit)</td></tr>
+            <tr><td class="vim-command">dd</td><td>Hele regel verwijderen (<em>d</em>elete)</td></tr>
+            <tr><td class="vim-command">yy</td><td>Hele regel kopiëren (<em>y</em>ank)</td></tr>
+            <tr><td class="vim-command">p</td><td>Plakken (<em>p</em>ut) na cursor</td></tr>
+            <tr><td class="vim-command">gg / G</td><td>Naar begin / einde van bestand</td></tr>
+            </tbody>
+        </table>
+        <p>Deze kleine groep vormt het klavier — alle andere commando's zijn variaties hierop.</p>
+    </section>
+
+    <!-- 4. Over het spel -->
+    <section class="section" id="about-game">
+        <h2>The VIM Trails</h2>
+        <p>In het spel navigeer je door een doolhof <em>met precies dezelfde letters</em> die je straks in Vim gebruikt. Zo koppel je elke fysieke beweging (h j k l) aan een visuele reactie; je geheugen leert twee dingen tegelijk: <strong>de spelwereld en de editor‑wereld</strong>.</p>
+        <p>De niveaus groeien mee — van een rustige tutorial tot een 20×20 doolhof met vijf vijanden die alleen zichtbaar zijn in bepaalde modi. Wie het spel uitspeelt, heeft ongemerkt een solide basis in Vim.</p>
+    </section>
+
+    <!-- 5. Motivatie -->
+    <section class="section" id="waarom-vim">
+        <h2>Waarom Vim leren?</h2>
+        <ul>
+            <li><strong>Snelheid:</strong> geen muis → minder hand‑verplaatsing → meer focus tijdens typen.</li>
+            <li><strong>Overal beschikbaar:</strong> standaard op Linux / macOS, gratis op Windows.</li>
+            <li><strong>Volledig naar wens:</strong> meer dan 30 000 community‑plugins.</li>
+            <li><strong>Krachtige tekst‑bewerking:</strong> zoek‑en‑vervang doorheen 10 000 regels met één commando.</li>
+        </ul>
+        <p>Vim is een van de meest populaire tekstverwerkers ter wereld voor programmeren. Het is een krachtig hulpmiddel voor programmeurs, maar ook voor schrijvers, redacteuren en iedereen die met tekst werkt. Het biedt een unieke manier van werken die je productiviteit kan verhogen.</p>
+         <!-- NIEUW: korte sectie over Neovim → moderne Vim -->
+    <h2>Neovim – de moderne versie van Vim</h2>
+    <p><strong>Neovim</strong> is een community‑gedreven heruitgave van Vim (gestart in 2014). Het behoudt alle vertrouwde sneltoetsen en <code>.vimrc</code>-compatibiliteit, maar voegt moderne extra’s toe zoals ingebouwde <em>Language Server Protocol</em>‑ondersteuning(wat betekent dat het je helpt met de syntax van programmeertalen), razendsnelle Lua‑configuratie en een asynchrone plug‑in‑architectuur.</p>
+    <p> Resultaat: dezelfde workflow&nbsp;⟶&nbsp;meer performance, eenvoudiger uitbreiden en een zeer actieve open‑source‑community.</p>    
+    <p>Meer info: <a href="https://neovim.io" target="_blank" rel="noopener">neovim.io</a></p>
+    </section>
+
+    <!-- 6. Keyboard‑shortcuts uit externe API + quote -->
+    <section class="section" id="shortcuts">
+        <h2>Universele sneltoetsen & leuke weetjes</h2>
+        <p>Onderstaande lijst komt live uit een openbare API.</p>
+        <div id="api-container"><div class="content-loader"></div></div>
+    </section>
+</main>
+
+<footer><p>© 2025 The VIM Trails — Team&nbsp;3</p></footer>
+
+<script>
+/* =====================================================================
+   ❶ Keyboard shortcuts ophalen — Mock API
+   ❷ Motiverende programmeer‑quote ophalen — Mock API
+   =====================================================================*/
+(async function loadExternalContent(){
+    const container = document.getElementById("api-container");
+    const mockApiUrl = "https://dummyjson.com/c/cb7c-3eac-4ae1-bdaf"; 
+
+    // helper om kaartje toe te voegen
+    function addCard(title, bodyHtml){
+        const card = document.createElement("div");
+        card.className = "api-card";
+        card.innerHTML = `<h3>${title}</h3>${bodyHtml}`;
+        container.appendChild(card);
+    }
+
+    try{
+        const response = await fetch(mockApiUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const apiData = await response.json();
+
+        /* -------- 1. Keyboard‑shortcuts verwerken -------- */
+        if (apiData.shortcuts && Array.isArray(apiData.shortcuts) && apiData.shortcuts.length > 0) {
+            const perApp = {};
+            apiData.shortcuts.forEach(s => { (perApp[s.application] ??= []).push(s); });
+            Object.entries(perApp).forEach(([app, list]) => {
+                const html = `<ul>${list.map(s => `<li><strong>${s.shortcut}</strong> – ${s.description}</li>`).join("")}</ul>`;
+                addCard(app, html);
+            });
+        } else {
+            addCard("Sneltoetsen", "<p>Geen sneltoetsen gevonden in de mock data.</p>");
+        }
+
+        /* -------- 2. Random programmeer‑quote verwerken -------- */
+        if (apiData.quote && apiData.quote.en && apiData.quote.author) {
+            const q = apiData.quote;
+            addCard("Vandaag's quote", `<blockquote>“${q.en}”<br><small>&mdash; ${q.author}</small></blockquote>`);
+        } else {
+            // Optioneel: fallback voor quote als die niet in de mock data zit
+            // addCard("Quote", "<p>Geen quote gevonden.</p>");
+        }
+
+        // uitleg waarom Vim onderscheidend is (blijft hetzelfde)
+        addCard("Vim ≠ Ctrl+Z","<p>Vim gebruikt <em>modi</em> in plaats van klassieke Ctrl‑/Alt‑combinaties. Een verwijder‑actie is dus gewoon <span class=\"vim-command\">dd</span> i.p.v. <kbd>Ctrl</kbd>+<kbd>X</kbd>.</p>");
+
+    }catch(err){
+        console.error("Fout bij laden mock API data:", err);
+        container.innerHTML = `<div class='api-error'>Mock API data kon niet geladen worden.<br>Controleer de URL en de console voor details.</div>`;
+        // Fallback als de mock API faalt
+        addCard("Voorbeeld Sneltoetsen", "<ul><li><strong>Ctrl+S</strong> – Opslaan</li></ul>");
+        addCard("Voorbeeld Quote", "<blockquote><p>“Talk is cheap. Show me the code.”</p><small>— Linus Torvalds</small></blockquote>");
+    }
+})();
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        const homeLink = document.getElementById("home-link");
+        if (homeLink) {
+            homeLink.click();
+        }
+    }
+});
+</script>
+
+</body>
+</html>

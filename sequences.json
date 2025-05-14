@@ -1,0 +1,18 @@
+{
+  "l": "moveRight",
+  "h": "moveLeft",
+  "k": "moveUp",
+  "j": "moveDown",
+  "gg": "moveUpUntillWall",
+  "shift+g": "moveDownUntillWall",
+  "$": "moveRightUntillWall",
+  "shift+$": "moveRightUntillWall",
+  "0": "moveLeftUntillWall",
+  "shift+0": "moveLeftUntillWall",
+  "v": "setGameModeVisual",
+  "shift+r": "setGameModeReplace",
+  "i": "setGameModeInsert",
+  ":": "setGameModeCommand",
+  "shift+:": "setGameModeCommand",
+  "n": "setGameModeNormal"
+}

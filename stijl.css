@@ -1,0 +1,580 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --primary-green: #19535F;
+  --secondary-green: #19535F;
+  --dark-green: #19535F;
+  --light-bg: #f8f9fa;
+  --dark-bg: #212121;
+  --glow-effect: 0 0 10px var(--primary-green);
+  --border-radius: 12px;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--light-bg) 0%, #ffffff 100%);
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark-bg);
+    overflow: auto; /* allow scrolling */
+}
+
+#view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 80vh;
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+}
+
+#mazeContainer {
+    display: flex;
+    position: relative;
+    margin: 0 auto;
+    opacity: 1; /* Make sure it's visible */
+    transform: scale(1);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 200, 83, 0.15);
+}
+
+#mazeContainer #mazeCanvas {
+    margin: 0;
+    display: block;
+    border: solid 2px var(--primary-green);
+    border-radius: var(--border-radius);
+    max-width: 60w;
+    max-height: 60vh;
+    box-shadow: var(--glow-effect);
+}
+
+#mazeContainer,
+#mazeContainer #mazeCanvas {
+    width: 60vmin;
+    height: 60vmin;
+    max-width: 700px;
+    max-height: 700px;
+}
+
+/* Styles for interactive VIM Obstacle Popup - Updated to match site theme */
+#Obstacle-Container {
+    background: linear-gradient(135deg, var(--light-bg) 0%, #ffffff 100%);
+    color: var(--dark-bg);
+    border: 2px solid var(--primary-green);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), var(--glow-effect);
+    padding: 25px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    width: auto;
+    max-width: 600px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+}
+
+#obstacleMessage h1 {
+    color: var(--primary-green);
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+#obstacleQuestion {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: var(--dark-bg);
+    font-weight: 400;
+}
+
+#vimCommandDisplay {
+    display: inline-block;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(25, 83, 95, 0.2); /* var(--primary-green) with opacity */
+    margin-top: 15px;
+    white-space: pre;
+    font-family: 'Courier New', Courier, monospace; /* Keep monospace for VIM commands */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+#vimCommandDisplay span {
+    display: inline-block;
+    min-width: 15px;
+    padding: 5px;
+    margin: 0 2px;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    color: var(--dark-bg);
+    font-size: 1.2em;
+    text-align: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#vimCommandDisplay span.typed {
+    background: linear-gradient(145deg, var(--primary-green), var(--dark-green));
+    color: white;
+    box-shadow: 0 2px 4px rgba(25, 83, 95, 0.3);
+}
+
+#vimCommandDisplay span.current {
+    background-color: rgba(25, 83, 95, 0.2);
+    color: var(--primary-green);
+    box-shadow: 0 0 8px rgba(25, 83, 95, 0.4), var(--glow-effect);
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+/* Adjust Wrong-Answer-Container for consistency as well */
+#Wrong-Answer-Container {
+    background: linear-gradient(135deg, var(--light-bg) 0%, #ffffff 100%);
+    color: #e74c3c; /* Red that works with the site theme */
+    border: 2px solid #e74c3c;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 24px rgba(231, 76, 60, 0.15);
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    width: auto;
+    max-width: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1002; /* Ensure it's above obstacle popup if both were to show */
+}
+
+#wrongAnswerMessage h1{
+    color: #e74c3c;
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+#Message-Container {
+    z-index: 11;
+    position: absolute;
+    visibility: hidden;
+    color: white;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(33, 33, 33, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+}
+
+#Message-Container #message {
+    z-index: 10;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -150px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), var(--glow-effect);
+    padding: 20px;
+    color: var(--dark-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+#page #menu {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: var(--secondary-green);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    min-height: 65px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#page #menu h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 2rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background: none;
+}
+
+#page #view {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    flex-grow: 1;
+    padding-top: 1px;
+}
+
+.border {
+    border: 4px solid var(--primary-green);
+    border-radius: var(--border-radius);
+    box-shadow: var(--glow-effect);
+}
+
+#instructions {
+    margin-top: 550px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-green);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Timer Styling */
+#levelContainer {
+    position: relative;
+    /*display: flex;*/
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    z-index: 0;
+
+}
+
+#timerContainer {
+    position: relative;
+    /*display: flex;*/
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    z-index: 0;
+}
+
+#levelDisplay,
+#timerDisplay {
+    font-size: 2.2rem;
+    background: linear-gradient(145deg, var(--primary-green), var(--secondary-green));
+    color: white;
+    padding: 1px 1px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), 0 0 10px rgba(var(--primary-green-rgb), 0.5);
+    letter-spacing: 1.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#timerDisplay::before {
+    content: "⏱️";
+    margin-right: 12px;
+    font-size: 1.8rem;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 400px) {
+    input, select {
+        width: 120px;
+    }
+    
+    #page #menu h1 {
+        font-size: 2.5rem;
+    }
+}
+
+#vim-cheatsheet {
+    /*display: flex; kan niet omdat text dan niet past*/
+    position: relative;
+    margin-left: 30px;
+    min-width: 220px;
+    max-width: 280px;
+    background: white;
+    border: 2px solid var(--primary-green);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,.1), var(--glow-effect);
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.4;
+    z-index: 0;
+    align-self: flex-start;
+}
+
+#vim-cheatsheet h2{
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    color: var(--primary-green);
+    text-align: center;
+    letter-spacing: .5px;
+}
+
+#vim-cheatsheet ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#vim-cheatsheet li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 0;
+}
+
+#vim-cheatsheet li.divider{
+    border-top: 1px dashed #ccc;
+    margin: 6px 0;
+    padding: 0;
+}
+
+#vim-cheatsheet kbd{
+    background: var(--secondary-green);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Poppins', monospace;
+    font-size: 0.8em;
+    box-shadow: 0 2px 4px rgba(0,0,0,.15);
+    white-space: nowrap;
+}
+
+#vim-cheatsheet span{
+    margin-left: 12px;
+    flex: 1;
+    text-align: right;
+}
+
+/*  Responsief: onder canvas op small screens   */
+@media (max-width: 1024px) {
+    #gameLayout {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #vim-cheatsheet {
+        margin-left: 0;
+        margin-top: 20px;
+        max-width: 60vmin;
+    }
+    
+    #mazeContainer,
+    #mazeContainer #mazeCanvas {
+        width: 70vmin;
+        height: 70vmin;
+    }
+}
+
+@media (max-width: 768px) {
+    #vim-cheatsheet {
+        z-index: 1; 
+        position: relative;
+        margin-top: 15px;
+        max-width: 70vmin;
+        max-height: none;
+        transform: none;
+    }
+}
+
+#vim-cheatsheet .dash-tip{
+    z-index: 1; 
+    position: relative;
+    margin-top: 10px;
+    font-size: 0.80rem;
+    text-align: center;
+    color: var(--secondary-green);
+    line-height: 1.4;
+}
+#vim-cheatsheet .dash-tip kbd{
+    z-index: 1; 
+    position: relative;
+    padding: 1px 4px;
+    font-size: 0.75em;
+}
+
+/* Game layout container */
+#gameLayout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Home button styling */
+.home-link {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
+.home-button {
+    width: 50px;
+    height: 50px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.home-button:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.tut-link, .algo-link {
+    display: inline-block;
+    padding: 8px 12px; /* Smaller containers */
+    text-decoration: none;
+    border-radius: 10px; /* Rounded edges */
+    font-size: 16px; /* Slightly smaller text */
+    font-weight: bold;
+    text-align: center;
+    background-color: white; /* Strong blue */
+    color: #19535F; /* White text */
+    border: 2px solid #002a80; /* Darker blue border */
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.tut-link {
+    left: 80px;
+}
+
+.algo-link {
+    left:180px;
+}
+
+.tut-link:hover, .algo-link:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+footer {
+    width: 100%;
+    background-color: var(--secondary-green);
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9em;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+footer p {
+    margin: 0;
+}
+
+input, select {
+    cursor: pointer;
+    background: linear-gradient(145deg, var(--primary-green), var(--dark-green));
+    height: 45px;
+    width: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: var(--border-radius);
+    color: white;
+    display: inline-block;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    appearance: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+input:hover, select:hover {
+    background: linear-gradient(145deg, var(--secondary-green), var(--primary-green));
+    box-shadow: 0 6px 12px rgba(0, 200, 83, 0.2), var(--glow-effect);
+    transform: translateY(-2px);
+}
+
+input:active, select:active {
+    background: var(--dark-green);
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.3), var(--glow-effect);
+}
+
+.custom-select {
+    display: inline-block;
+    position: relative;
+}
+
+.custom-select::after {
+    content: "▼";
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 10px;
+    color: white;
+    pointer-events: none;
+}
+
+.custom-select select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 30px;
+}

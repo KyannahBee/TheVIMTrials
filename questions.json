@@ -1,0 +1,22 @@
+[
+    { "command": "dd", "description": "de huidige regel te verwijderen" },
+    { "command": "yyp", "description": "de huidige regel te kopiëren en direct eronder te plakken" },
+    { "command": "x", "description": "het karakter onder de cursor te verwijderen" },
+    { "command": "ggddp", "description": "de eerste regel te verplaatsen naar de positie onder de cursor" },
+    { "command": "gg10ddGp", "description": "de eerste 10 regels te verplaatsen naar het einde van het bestand" },
+    { "command": "ciwnew", "description": "het huidige woord te vervangen door 'new' en in insert modus te blijven" },
+    { "command": "d$", "description": "alles vanaf de cursor tot het einde van de regel te verwijderen" },
+    { "command": "ggVGd", "description": "het volledige bestand te selecteren en te verwijderen" },
+    { "command": ":g/error/d", "description": "alle regels die 'error' bevatten te verwijderen" },
+    { "command": ":%s/foo/bar/g", "description": "alle voorkomens van 'foo' te vervangen door 'bar' in het hele bestand" },
+    { "command": "/TODO<CR>dd", "description": "de eerstvolgende regel die 'TODO' bevat te zoeken en te verwijderen" },
+    { "command": ":10,20d", "description": "regels 10 tot en met 20 te verwijderen" },
+    { "command": "vipJ", "description": "de huidige paragraaf te selecteren en samen te voegen tot één regel" },
+    { "command": ":g/^$/d", "description": "alle lege regels te verwijderen" },
+    { "command": "va{d", "description": "het huidige codeblok (omgeven door '{' en '}') te selecteren en te verwijderen" },
+    { "command": "gg=G", "description": "het volledige bestand correct te laten inspringen" },
+    { "command": ":.s/yes/no/", "description": "het eerste voorkomen van 'yes' op de huidige regel te vervangen door 'no'" },
+    { "command": ":sort", "description": "alle regels in het bestand alfabetisch te sorteren" },
+    { "command": "10,20m30", "description": "regels 10 tot en met 20 te verplaatsen naar na regel 30" },
+    { "command": ":%norm A;", "description": "aan het einde van elke regel in het bestand een puntkomma (;) toe te voegen" }
+]

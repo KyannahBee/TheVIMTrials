@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prim's Algoritme Uitleg</title>
+    <link rel="stylesheet" href="./uitlegAlgoritme.css" type="text/css">
+    <script type="module">
+        import { Subject } from 'https://cdn.jsdelivr.net/npm/rxjs@7.8.1/+esm';
+        window.Subject = Subject;
+    </script>
+    <link rel="icon" href="../images/favicon.png" type="image/x-icon">
+</head>
+<body>
+
+<header>
+    <a href="../StartPage/index.html">
+        <img class="home-button" src="../images/home-knop.png" alt="Home-knop">
+    </a>
+    <div class="header-title">
+        <h1>Uitleg Algoritmes</h1>
+    </div>
+    <img class="navigatie-image" src="../images/navigatie-2.jpg" alt="navigatie-info">
+</header>
+
+<main>
+    <div class="tabs">
+        <a href="Prim.html" class="tab active">Algoritme van Prim</a>
+        <a href="BFS.html" class="tab">BFS</a>
+    </div>
+    <div class="card">
+        <h2>Wat is Prim's algoritme?</h2>
+        <p>
+            Het algoritme van Prim is een wiskundig algoritme dat een random boom maakt uit een gegeven graaf,
+            (een boom is een graaf zonder cycli). Dit algoritme wordt hier gebruikt voor het genereren van random doolhoven van een bepaalde grootte.
+        </p>
+
+        <h2>Werking van het algoritme</h2>
+        <p>
+            Het algoritme krijgt een gewogen graaf met een gegeven beginpunt. Er worden vanaf nu 2 graven bijgehouden:
+        </p>
+        <ul>
+            <li>De oorspronkelijke graaf die alle knopen en bogen bevat (randknopen en randbogen).</li>
+            <li>De boom die slechts een selectie bijhoudt (boomknopen).</li>
+        </ul>
+        <p>Het proces verloopt als volgt:</p>
+        <ol>
+            <li>Ten eerste wordt het beginpunt in de boom gestoken.</li>
+            <li>Daarna worden de volgende stappen herhaald totdat een gekozen voorwaarde is bereikt:
+                <ul>
+                    <li>Bepaal alle randbogen die een boomknoop met een randknoop verbinden.</li>
+                    <li>Kies uit deze bogen degene met het kleinste gewicht en voeg deze boog en knoop toe aan de boom.</li>
+                </ul>
+            </li>
+        </ol>
+        <p>
+            Omdat er enkel wordt gekeken naar de verbinding tussen een rand- en een boomknoop, zullen er nooit cycli ontstaan in de boom.
+        </p>
+
+        <h2>Toepassing op deze website</h2>
+        <p>
+            Het doolhof bestaat uit een rooster en elk vak van dit rooster kan oftewel een muur zijn of een pad zijn.
+            In het begin van dit algoritme zijn alle vakken muren. Via het algoritme zal bepaald worden welke vakken paden worden.
+            Het algoritme begint op een vast startvlak en maakt van deze een pad. Daarna worden volgende stappen herhaald tot er geen paden meer kunnen gemaakt worden.
+        </p>
+        <ul>
+            <li>Worden alle buren van bestaande paden bekeken.</li>
+            <li>Een buur kan een pad worden als het slechts één aangrenzend pad heeft.</li>
+            <li>Uit alle mogelijke opties wordt telkens willekeurig één pad gekozen en toegevoegd.</li>
+        </ul>
+        <p>
+            Uiteindelijk wordt het eindpunt bepaalt als het pad dat zover mogelijk naar de rechteronderhoek ligt.
+        </p>
+
+        <h2>Performantie</h2>
+        <p>
+            Prim's Algoritme is slechts één van de vele mogelijkheden voor het genereren van een opspannende boom.
+            Hier is gekozen voor Prim omdat deze heel efficiënt werkt voor dichte graven (veel bogen).
+            Dit is nodig omdat er voor een doolhofgeneratie veel bogen zijn in de begingraaf.
+            Een ander algoritme dat vaak gebruikt wordt voor een opspannede boom is het Algoritme van Kruskal dat beter werkt voor spaarzame grafen (minder bogen).
+        </p>
+
+        <h2>Visualisatie</h2>
+        <p>
+            <canvas id="mazeCanvas" width="500" height="500"></canvas>
+        </p>
+    </div>
+
+</main>
+
+<footer>
+  <p>© 2025 VIM Trials - Team 3</p>
+</footer>
+
+<script type="module" src="./uitlegAlgoritme.js"></script>
+<script src="./toetsenbordNavigatie.js"></script>
+</body>
+</html>

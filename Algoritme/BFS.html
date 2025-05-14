@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BFS</title>
+  <link rel="stylesheet" href="uitlegAlgoritme.css" />
+</head>
+<body>
+
+
+<header>
+  <a href="../StartPage/index.html">
+    <img class="home-button" src="../images/home-knop.png" alt="Home-knop">
+  </a>
+  <div class="header-title">
+    <h1>Uitleg Algoritmes</h1>
+  </div>
+  <img class="navigatie-image" src="../images/navigatie-3.jpg" alt="navigatie-info">
+</header>
+<main>
+  <div class="tabs">
+    <a href="Prim.html" class="tab">Algoritme van Prim</a>
+    <a href="BFS.html" class="tab active">BFS</a>
+  </div>
+  <div class="card">
+    <h2>Wat is Breadth First Search (BFS)?</h2>
+
+    <p>
+      Breadth first search is een algoritme dat een boom doorloopt. In deze website wordt dit gebruikt om een afstandsmatrix op te stellen van het doolhof (de boom). Deze afstandsmatrix wordt dan gebruikt om het kortste pad tussen de vijanden en de player te bepalen.
+    </p>
+
+    <h2>Werking van het algoritme</h2>
+
+    <p>
+      Het breadth-first-search-algoritme overloopt de boom vanuit een gegeven startknoop. Het algoritme houdt een wachtrij bij van alle knopen die nog onderzocht moeten worden. In deze wachtrij kunnen er voorwaarden of extra waarden aan die knoop gekoppeld worden.
+    </p>
+    <p>
+      Logisch gezien wordt de startknoop als eerste aan de wachtrij toegevoegd. Nu zolang deze wachtrij nog knopen bevat, worden de volgende stappen herhaald:
+    </p>
+
+    <ul>
+      <li>Haal de eerste knoop uit de wachtrij.</li>
+      <li>Vind alle buren van deze knoop.</li>
+      <li>Voeg alle buren die nog niet bezocht zijn toe aan de wachtrij.</li>
+    </ul>
+
+    <p>
+      Op deze manier worden alle knopen van de boom bezocht en kan er een voorwaarde aan vastgehangen worden of een opdracht mee uitgevoerd worden. Handig voor deze toepassing is dat telkens alle knopen op hetzelfde afstandsniveau van de startknoop worden bekeken: eerst alle knopen op afstand 1, dan afstand 2, enzovoort.
+    </p>
+
+    <h2>Toepassing op deze website</h2>
+
+    <p>
+      Op deze website wordt dit algoritme gebruikt om de afstandsmatrix van de boom van het doolhof te bepalen. Hiervoor wordt de breadth-first-search op elke knoop van de boom toegepast.
+    </p>
+    <p>
+      Telkens wordt voor elke knoop bijgehouden of deze al bezocht is. Daarnaast wordt er ook een wachtrij bijgehouden (van het type FIFO) waarin de te overlopen knopen worden bijgehouden, elk met diens afstand tot het startpunt.
+    </p>
+
+    <ul>
+      <li>Ten eerste wordt de startknoop in deze wachtrij geplaatst met een afstand van nul.</li>
+      <li>Zolang deze wachtrij niet leeg is worden de volgende stappen herhaald:
+        <ul>
+          <li>Haal de eerste knoop en afstand <strong>d</strong> uit de wachtrij.</li>
+          <li>Plaats deze knoop met zijn afstand in de afstandsmatrix.</li>
+          <li>Voor elk van de buren van deze knoop:
+            <ul>
+              <li>Als deze knoop al bezocht is, doe je niets.</li>
+              <li>Anders:
+                <ul>
+                  <li>Maak deze knoop bezocht.</li>
+                  <li>Voeg deze knoop toe aan de wachtrij met afstand <strong>d+1</strong>.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>Kortste pad bepalen</h2>
+
+    <p>
+      Nu is voor elke knoop de afstand van deze knoop naar elke andere knoop bepaald. Maar hoe wordt nu het kortste pad bepaald?
+    </p>
+    <p>
+      Bekijk het pad van knoop A naar knoop B. Bekijk voor alle buren van knoop A of diens afstand tot B evengroot is als de afstand van A tot B min 1. Als dit het geval is, is dit de eerstvolgende knoop in het pad.
+    </p>
+
+    <h2>Performantie</h2>
+    <p>
+      BFS is een simpel algoritme waardoor het dus niet overal net zo goed zou werken.
+      Ten eerste werkt het algoritme enkel op ongewogen graven, wat hier het geval is.
+      Daarnaast moet het algoritme gebruik kunnen maken van een queue, aangezien dit geen probleem is in javascript is dit hier geen restrictie maar juist een voordeel.
+      Het algoritme werkt, zoals eerder vermeld, per niveau. Dit is zeer handig wanneer dit nodig is maar kan vertragend werken als dit niet nodig is.
+      Ten laatste is het grootste probleem dat dit algoritme niet zeer efficiënt is voor brede graven (veel bogen).
+      Toch wordt er hier gebruik gemaakt van het algoritme omdat het geen extreem efficient gevoelig systeem is, maar hou hier rekening mee in andere gevallen.
+      Een algoritme dat vaak gelinkt wordt aan BFS is Depth-first search (DFS).
+      Dit algoritme is hier echter niet nodig. DFS wordt eerder gebruikt voor detectie van cycli, iets wat hier niet nodig is door de aard van het doolhof (een boom).
+    </p>
+  </div>
+</main>
+
+<footer>
+  <p>© 2025 VIM Trials - Team 3</p>
+</footer>
+<script src="./toetsenbordNavigatie.js"></script>
+</body>
+</html>

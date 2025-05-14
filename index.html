@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vim Trials</title>
+  <link rel="stylesheet" href="stijl.css">
+  <link rel="icon" href="/images/favicon.png" type="image/x-icon">
+</head>
+<body>
+<div id="page">
+  <div id="Message-Container">
+    <div id="message">
+      <h1>Proficiat!</h1>
+      <p>Je bent klaar!</p>
+      <p id="moves"></p>
+      <input id="okBtn" type="button" onclick="toggleVisibility('Message-Container')" value="Top!">
+    </div>
+  </div>
+  <div id="Obstacle-Container" style="display:none;">
+    <div id="obstacleMessage">
+      <h1>Obstacle!</h1>
+      <p id="obstacleQuestion"></p>
+      <input type="text" id="obstacleInput" placeholder="Type your answer and press Enter">
+    </div>
+  </div>
+
+  <div id="Wrong-Answer-Container" style="display:none;">
+    <div id="wrongAnswerMessage">
+      <h1>Oops!</h1>
+      <p>Wrong command! Try again.</p>
+    </div>
+  </div>
+
+  <div id="menu">
+    <a href="/StartPage/index.html" class="home-link">
+      <img src="/images/home-knop.png" alt="Home" class="home-button">
+    </a>
+    <a href="./Tutorial/indexTutorial.html" class="tut-link">
+      Tutorial
+    </a>
+    <a href="./Algoritme/Prim.html" class="algo-link">
+      Algoritme?
+    </a>
+    <h1>VIM Trials</h1>
+  </div>
+  <div id="view">
+    <div id="timerContainer">
+      <p id="timerDisplay">00:00</p>
+    </div>
+    <div id="levelContainer">
+      <p id="levelDisplay">1</p>
+    </div>
+    <div id="gameLayout">
+      <div id="mazeContainer">
+        <canvas id="mazeCanvas" class="border" height="700" width="700"></canvas>
+      </div>
+      
+      <!-- VIM Cheat Sheet -->
+      <aside id="vim-cheatsheet" aria-label="VIM spiekbriefje">
+        <h2>VIM Cheat Sheet</h2>
+        <ul>
+          <li><kbd>h</kbd> <span>naar links</span></li>
+          <li><kbd>j</kbd> <span>naar onder</span></li>
+          <li><kbd>k</kbd> <span>naar boven</span></li>
+          <li><kbd>l</kbd> <span>naar rechts</span></li>
+
+          <li class="divider"></li>
+
+          <li><kbd>gg</kbd>           <span>ga&nbsp;naar&nbsp;bovenste&nbsp;lijn</span></li>
+          <li><kbd>Shift</kbd>+<kbd>g</kbd> <span>ga&nbsp;naar&nbsp;onderste&nbsp;lijn</span></li>
+          <li><kbd>0</kbd>            <span>meest links</span></li>
+          <li><kbd>$</kbd>            <span>meest rechts</span></li>
+
+          <li class="divider"></li>
+
+    <li><kbd>dd</kbd>           <span>verwijder lijn</span></li>
+    <li><kbd>yyp</kbd>          <span>dupliceer lijn</span></li>
+    <li><kbd>x</kbd>            <span>verwijder char</span></li>
+
+  </ul>
+
+  <p class="dash-tip">
+    <strong>TIP</strong> dash dwars door&nbsp;obstacles &amp; enemies met
+    <kbd>gg</kbd>, <kbd>Shift</kbd>+<kbd>G</kbd>, <kbd>0</kbd> en <kbd>$</kbd>
+  </p>
+
+  <p class="dash-tip">
+    <strong>TIP</strong> verplaats meerdere vakjes door het aantal toe te voegen 
+    <kbd>3j</kbd>: je verplaatst 3 vakjes naar omlaag
+  </p>
+  
+</aside>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
+<script type="module">
+  import { Subject } from "https://cdn.jsdelivr.net/npm/rxjs@7.8.1/+esm";
+  window.Subject = Subject;
+</script>
+<script type="module" src="mainGameRunner.js"></script>
+
+<!--<footer>
+  <p>© 2025 VIM Trials - Team 3</p>
+</footer>-->
+
+
+</body>
+
+</html>

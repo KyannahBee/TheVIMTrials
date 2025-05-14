@@ -1,0 +1,92 @@
+/* Algemene opmaak */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Tekstgedeelte voor tutorialuitleg */
+.text-area {
+    background-color: #05314A;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    font-size: 20px;
+}
+
+/* Grid met 5x5 cellen */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 60px);
+    grid-template-rows: repeat(5, 60px);
+    gap: 5px;
+    justify-content: center;
+    margin: 30px auto;
+}
+
+/* Elke cel in het grid */
+.cell {
+    width: 60px;
+    height: 60px;
+    background-color: #e0e0e0;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+/* De speler (vierkantje dat beweegt) */
+.player {
+    width: 60px;
+    height: 60px;
+    background-color: #19535F;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Alle knoppen */
+.button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+    border: none;
+    background-color: #19535F;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+
+/* Einde tutorial boodschap */
+.end-message {
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #19535F;
+}
+.text-title {
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.text-body {
+    font-size: 18px;
+    line-height: 1.5;
+}
